@@ -109,17 +109,17 @@ export class ZakenKlantLijstComponent implements OnInit {
   putRestaurantsOnMap(): void {
 
     // commented out for api call limit
-    // this.zaken.forEach(zaak => {
-    //   this.placesService.getCoordinatesFromAddress(zaak.adres)
-    //     .subscribe(data => {
-    //       this.addMarker(zaak, data.bbox[2], data.bbox[3], 'shop');
-    //     })
-    // })
+    this.zaken.forEach(zaak => {
+      this.placesService.getCoordinatesFromAddress(zaak.adres)
+        .subscribe(data => {
+          this.addMarker(zaak, data.bbox[2], data.bbox[3], 'shop');
+        })
+    })
 
-    this.placesService.getCoordinatesFromAddress(this.zaken[1].adres)
-      .subscribe(data => {
-        this.addMarker(this.zaken[1], data.bbox[2], data.bbox[3], 'shop');
-      })
+    // this.placesService.getCoordinatesFromAddress(this.zaken[1].adres)
+    //   .subscribe(data => {
+    //     this.addMarker(this.zaken[1], data.bbox[2], data.bbox[3], 'shop');
+    //   })
   }
 
   addMarker(zaak: Zaak, lon: number, lat: number, img: string): void {
